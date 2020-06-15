@@ -1,4 +1,6 @@
-﻿using System;
+﻿using lab_456.Models;
+using lab_456.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +10,22 @@ namespace lab_456.Controllers
 {
     public class CourseController : Controller
     {
-        // GET: Course
-        public ActionResult create()
+        private readonly ApplicationDbContext _dbContext;
+        public CourseController()
         {
-            return View();
+            _dbContext = new ApplicationDbContext();
+
+        }
+
+        // GET: Course
+        [Authorize]
+        public ActionResult Create()
+        {
+            var viewModel = new CourseViewModel
+            {
+                Categories = _dbContext.Categories.ToList()
+            };
+            return View(viewModel);
         }
     }
 }

@@ -21,7 +21,8 @@ namespace lab_456.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Course> Course { get; set; }
-        public DbSet<Category> Categoryes { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
